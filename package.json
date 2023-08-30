@@ -1,0 +1,26 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "230830 test express with react",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mag123c/first-nodejs.git"
+  },
+  "author": "mag123c",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mag123c/first-nodejs/issues"
+  },
+  "homepage": "https://github.com/mag123c/first-nodejs#readme",
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jquery": "^3.7.1",
+    "livereload": "^0.9.3"
+  }
+}

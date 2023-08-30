@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="cover-con">
+        <div class="container-fluid d-flex justify-content-center" id="main-con">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">게임 선택</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">메이플스토리</a></li>
+                    <li><a class="dropdown-item" href="#">리그오브레전드</a></li>
+                    <li><a class="dropdown-item" href="#">전략적 팀 전투</a></li>
+                </ul>
+            </div>
+            <div>
+                <form class="d-flex" name="searchForm" action="/search">
+                    <input type="hidden" id="game" name="game">
+                    <input class="form-control me-2" type="search" placeholder="닉네임 입력" aria-label="Search" name="id" id="searchedId">
+                    <button class="btn btn-outline-success" type="button" id="idSearch-btn">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

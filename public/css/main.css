@@ -1,0 +1,10 @@
+#cover-con {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#main-con {
+    position: absolute;
+    top: 50%;
+}
