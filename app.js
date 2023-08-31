@@ -19,8 +19,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, '/node_modules')))
 app.use(livereloadMiddleware());
-app.use('/search', searchRouter);
 
+app.all('/search', searchRouter);
 app.get('/', mainRouter);
 
 app.listen(port, () => {

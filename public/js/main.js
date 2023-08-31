@@ -10,7 +10,7 @@ idSearchBtn.addEventListener('click', () => {
     let selectedGame = $('#dropdownMenuButton1').text();
 
     //id validation
-    if(!validateID(inputID)) {
+    if(!validateID(inputID, selectedGame)) {
         alert("잘못된 ID 형식입니다.");
         return;
     }
@@ -28,8 +28,12 @@ idSearchBtn.addEventListener('click', () => {
     }
 });
 
-function validateID(inputID) {
-    const regexp = /^[가-힣a-zA-Z0-9]*$/;
+function validateID(inputID, selectedGame) {
     if(inputID.length == 0) return false;
-    return regexp.test(inputID);
+
+    const regexpMaple = /^[가-힣a-zA-Z0-9]*$/;
+    const regexpLiot = /^[가-힣a-zA-Z0-9\s]*$/;
+    
+    if(selectedGame == "메이플스토리") return regexpMaple;
+    else return regexpLiot;
 }
