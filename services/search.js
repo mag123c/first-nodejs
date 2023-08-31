@@ -72,14 +72,15 @@ async function getLeagueOfLegendsInfo(searchedId) {
                         win: detailInfo.win ? 1 : 0,
                         kills: detailInfo.kills,
                         deaths: detailInfo.deaths,
-                        assists: detailInfo.assists
+                        assists: detailInfo.assists,
+                        imgURL: detailInfo.imgURL
                     }
                 });
             }
         }
     }
     matchRecentInfo.sort((a, b) => b.data.total - a.data.total);
-    return { summonerInfo, summonerLeagueInfo, summonerMatchesInfo, matchDetailInfo, matchRecentInfo };
+    return { summonerInfo, summonerLeagueInfo, matchRecentInfo, matchDetailInfo };
 }
 
 async function getSummonerInfo(URL) {
@@ -147,6 +148,7 @@ async function getMatchDetailInfo(URL, searchedId) {
                     const { gameStartTimestamp, gameEndTimestamp, gameVersion, gameMode, gameType } = response.data.info;
                     const { kills, deaths, assists, championName, timePlayed, win, totalMinionsKilled } = currentData;
                     const { kda } = currentData.challenges;
+                    const kdaDecimal = kda.toFixed(2);
 
                     const versionSegments = gameVersion.split(".");
                     const versionURLFormat = versionSegments[0] + "." + versionSegments[1] + ".1"
@@ -168,7 +170,7 @@ async function getMatchDetailInfo(URL, searchedId) {
                         imgURL, championName,
                         win,
                         gameType,
-                        kda, kills, deaths, assists,
+                        kdaDecimal, kills, deaths, assists,
                         minionsKilledPerMinutes, totalMinionsKilled,
                         playTime, playDate                        
                     };

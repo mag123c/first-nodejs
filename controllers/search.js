@@ -6,9 +6,9 @@ module.exports.getSearchedInfo = async (req, res) => {
     //return summonerInfo, summonerLeagueInfo, summonerMatchesInfo, matchDetailInfo, matchRecentInfo
     try {
         const userInfo = await services.searchService(selectedGame, searchedId);
-        console.log(userInfo);
-        res.json(userInfo);
+        return userInfo;
     } catch (error) {
+        console.error(error);
         res.status(500).json({error : "search Controller error occured"});
     }    
 };

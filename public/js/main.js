@@ -4,10 +4,20 @@ $('.dropdown-item').on('click', function () {
 });
 
 const idSearchBtn = document.getElementById('idSearch-btn');
+const searchedId = document.getElementById('searchedId');
 
-idSearchBtn.addEventListener('click', () => {
+idSearchBtn.addEventListener('click', search);
+searchedId.addEventListener('keyup', function(event) {
+    alert(event.key);
+    if(event.key === "Enter") {
+        search();
+    }
+});
+
+function search() {    
     let inputID = $('#searchedId').val();
     let selectedGame = $('#dropdownMenuButton1').text();
+    alert(inputID, selectedGame);
 
     //id validation
     if(!validateID(inputID, selectedGame)) {
@@ -26,7 +36,7 @@ idSearchBtn.addEventListener('click', () => {
 
         document.searchForm.submit();
     }
-});
+}
 
 function validateID(inputID, selectedGame) {
     if(inputID.length == 0) return false;

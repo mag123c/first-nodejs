@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Ramche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Ramche.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#left-con {
+    width: 30%;
+    height: 80%;    
+}
+
+#summoner-con {
+    width: 100%;
+    height: 20%;
+}
+
+#league-con {
+    width: 100%;
+    height: 20%;
+}
+
+#league-con img {
+    display: block;
+    width : 70%;
+    height: auto;
+}
+
+#detail-con {
+    width: 100%;
+    height: 20%;
+}
+
+#right-con {
+    width: 60%;
+    height: 80%;
+}
+
+#recent-con {
+    width: 100%;
+    height: 100%;
+}
+
+#summoner-con, #league-con, #detail-con, #recent-con {
+    border: solid black 1px;
+}
+
+.winfalse-con, .kdatext-con, .cs-con, .playtime-con, .h-con{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h3, p, span {
+    font-family: 'Ramche';
+}
