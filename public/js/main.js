@@ -7,9 +7,9 @@ const idSearchBtn = document.getElementById('idSearch-btn');
 const searchedId = document.getElementById('searchedId');
 
 idSearchBtn.addEventListener('click', search);
-searchedId.addEventListener('keyup', function(event) {
-    alert(event.key);
+searchedId.addEventListener('keydown', function(event) {    
     if(event.key === "Enter") {
+        event.preventDefault();
         search();
     }
 });
@@ -17,17 +17,10 @@ searchedId.addEventListener('keyup', function(event) {
 function search() {    
     let inputID = $('#searchedId').val();
     let selectedGame = $('#dropdownMenuButton1').text();
-    alert(inputID, selectedGame);
 
-    //id validation
     if(!validateID(inputID, selectedGame)) {
-        alert("잘못된 ID 형식입니다.");
-        return;
-    }
-
-    //game select validation
-    if(selectedGame.length == 0 || selectedGame == "게임 선택") {
-        alert("게임을 선택해주세요");
+        if(selectedGame == "게임 선택") alert("게임을 선택해주세요");
+        else alert("잘못된 ID 형식입니다.");
         return;
     }
     
@@ -44,6 +37,7 @@ function validateID(inputID, selectedGame) {
     const regexpMaple = /^[가-힣a-zA-Z0-9]*$/;
     const regexpLiot = /^[가-힣a-zA-Z0-9\s]*$/;
     
+    if(selectedGame == "게임 선택") return false;
     if(selectedGame == "메이플스토리") return regexpMaple;
     else return regexpLiot;
 }

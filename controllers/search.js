@@ -1,8 +1,8 @@
 const services = require('../services/search');
 
 module.exports.getSearchedInfo = async (req, res) => {
-    const selectedGame = req.query.game;
-    const searchedId = req.query.id;
+    const selectedGame = req.body.game;
+    const searchedId = req.body.id;
     //return summonerInfo, summonerLeagueInfo, summonerMatchesInfo, matchDetailInfo, matchRecentInfo
     try {
         const userInfo = await services.searchService(selectedGame, searchedId);

@@ -13,15 +13,19 @@
 <!-- view return : summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo -->
 
 <body>
+  <!-- 로딩 화면 -->
+  <div class="loader">
+  </div>
+
   <div class="container-fluid d-flex justify-content-center" id="cover-con">
     <div class="container-fluid d-flex flex-column m-5" id="left-con">
       <!-- 소환사 정보 -->
       <div class="d-flex m-3" id="summoner-con">
         <div class="m-1">
-          <img src="<%= searchData.summonerInfo.iconURL %>" alt="summoner-icon">
+          <img alt="summoner-icon" class="summoner-img">
         </div>
-        <div class="m-3 d-flex h-con">
-          <h3><%= searchData.summonerInfo.name %></h3>
+        <div class="m-3 d-flex h-con">          
+          <h3 class="summoner-name"></h3>          
         </div>
       </div>
 
@@ -32,19 +36,12 @@
         </div>
         <div class="m-1 d-flex">
           <div class="m-1">
-            <img src="../img/<%= searchData.summonerLeagueInfo.tier %>.png" alt="tier-icon">
+            <img alt="tier-icon" class="summonerLeagueInfo-img">
           </div>
           <div class="m-1">
-            <p>
-              <%= searchData.summonerLeagueInfo.tier %>
-                <%= searchData.summonerLeagueInfo.rank %>
-            </p>
-            <p>
-              <%= searchData.summonerLeagueInfo.leaguePoints %> LP
-            </p>
-            <p>
-              <%= searchData.summonerLeagueInfo.wins %>승 <%= searchData.summonerLeagueInfo.losses %>패
-            </p>
+            <p class="summonerLeagueInfo-tierRank"></p>
+            <p class="summonerLeagueInfo-points"></p>
+            <p class="summonerLeagueInfo-winlose"></p>            
           </div>
       </div>
     </div>
@@ -54,31 +51,19 @@
       <div class="m-2 d-flex h-con">
         <h3> 최근 20게임 챔피언 통계</h3>
       </div>
-      <% for(let i=0; i < searchData.matchRecentInfo.length; i ++) { %>
-        <% const curMRI=searchData.matchRecentInfo[i] %>
-        <% if(curMRI) { %>
-          <% const percent=Math.round(curMRI.data.win / curMRI.data.total * 100); %>
-          <% const detailKDA=((curMRI.data.kills + curMRI.data.assists) / curMRI.data.deaths).toFixed(2); %>
-            <div class="detail-item d-flex m-3">
-              <div class="m-2">
-                <img src="<%= curMRI.data.imgURL %>">
-              </div>
-              <div class="m-2">
-                <p>
-                  <%= curMRI.championName %>
-                </p>
-                <p>
-                  <%= curMRI.data.total %> 게임
-                </p>
-              </div>
-              <div class="m-2 kdatext-con">
-                <p>승률 <%= percent %>%</p>
-                <p class="kda-text">KDA <%= detailKDA %>
-                </p>
-              </div>
-            </div>
-          <% } %>
-        <% } %>
+      <div class="detail-item d-flex m-3">
+        <div class="m-2">
+          <img class="matchRenectInfo-imgURL">
+        </div>
+        <div class="m-2">
+          <p class="matchRecentInfo-name"></p>
+          <p class="matchRecentInfo-data-total"></p>
+        </div>
+        <div class="m-2 kdatext-con">
+          <p class="matchRecentInfo-data-percent">
+          <p class="kda-text matchRecentInfo-data-kdaCalculate"></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -86,42 +71,26 @@
   <div class="container-fluid d-flex m-2" id="right-con">
     <!-- 최근 전적 -->
     <div class="d-flex flex-column" id="recent-con">
-      <% for(let i=0; i < searchData.matchDetailInfo.length; i ++) { %>
-        <% const curMDI=searchData.matchDetailInfo[i]; %>
-          <% if(curMDI) {%>
-            <div class="recent-detail-con d-flex m-1">
-              <div class="m-1">
-                <img src="<%= curMDI.imgURL %>" alt="detail-champion-icon">
-              </div>
-              <div class="m-1 winfalse-con">
-                <h3 class="winfalse-text">
-                  <%= curMDI.win %>
-                </h3>
-              </div>
-              <div class="m-1 kdatext-con">
-                <p class="kda-text">KDA : <%= curMDI.kdaDecimal %>
-                </p>
-                <p class="kda-text2">
-                  <%= curMDI.kills %> / <%= curMDI.deaths %> / <%= curMDI.assists %>
-                </p>
-              </div>
-              <div class="m-1 cs-con">
-                <p class="minionspercent-text">분당 <%= curMDI.minionsKilledPerMinutes %>개</p>
-                <p class="totalminions-text">
-                  <%= curMDI.totalMinionsKilled %> CS
-                </p>
-              </div>
-              <div class="m-1 playtime-con">
-                <p class="playtime-text">
-                  <%= curMDI.playTime %>
-                </p>
-                <p class="playtime-text">
-                  <%= curMDI.playDate %>
-                </p>
-              </div>
-            </div>
-            <% } %>
-              <% } %>
+      <div class="recent-detail-con d-flex m-1">
+        <div class="m-1">
+          <img class="matchDetailInfo-imgURL" alt="detail-champion-icon">
+        </div>
+        <div class="m-1 winfalse-con">
+          <h3 class="winfalse-text matchDetailInfo-win"></h3>
+        </div>
+        <div class="m-1 kdatext-con">
+          <p class="kda-text matchDetailInfo-kdaDecimal"></p>
+          <p class="kda-text2 matchDetailInfo-killdeathassists"></p>
+        </div>
+        <div class="m-1 cs-con">
+          <p class="minionspercent-text matchDetailInfo-minPerMinions"></p>
+          <p class="totalminions-text matchDetailInfo-totalMinions"></p>
+        </div>
+        <div class="m-1 playtime-con">
+          <p class="playtime-text matchDetailInfo-playTime"></p>
+          <p class="playtime-text matchDetailInfo-playDate"></p>
+        </div>
+      </div>
     </div>
   </div>
   </div>
