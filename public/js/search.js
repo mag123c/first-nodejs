@@ -45,6 +45,11 @@ function dataParsing(res) {
     var { summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo } = res.searchData;
     console.log(summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo);
     //summonerInfo
+    if(!summonerInfo) {
+
+        return;
+    }
+
     var summonerImg = $("img.summoner-img");
     var summonerName = $("h3.summoner-name");
     
@@ -57,10 +62,16 @@ function dataParsing(res) {
     var summonerLeaguePoints = $('p.summonerLeagueInfo-points');
     var summonerLeagueWinAndLose = $('p.summonerLeagueInfo-winlose');
 
-    summonerLeagueImg.attr('src', `../img/${summonerLeagueInfo.tier}.png`);
-    summonerLeagueTierAndRank.text(`${summonerLeagueInfo.tier} ${summonerLeagueInfo.rank}`);
-    summonerLeaguePoints.text(`${summonerLeagueInfo.leaguePoints}`);
-    summonerLeagueWinAndLose.text(`${summonerLeagueInfo.wins}승 ${summonerLeagueInfo.losses}패`);
+    if(summonerLeagueInfo) {
+        summonerLeagueImg.attr('src', `../img/${summonerLeagueInfo.tier}.png`);
+        summonerLeagueTierAndRank.text(`${summonerLeagueInfo.tier} ${summonerLeagueInfo.rank}`);
+        summonerLeaguePoints.text(`${summonerLeagueInfo.leaguePoints}`);
+        summonerLeagueWinAndLose.text(`${summonerLeagueInfo.wins}승 ${summonerLeagueInfo.losses}패`);
+    }
+    
+    if(!summonerLeagueInfo) {
+        
+    }
 
     //matchDetailInfo
 

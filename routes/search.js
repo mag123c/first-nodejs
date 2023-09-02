@@ -12,6 +12,7 @@ router.get('/search', (req, res) => {
 });
 
 router.post('/search', async (req, res) => {
+    console.log("routes");
     try {        
         //return summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo
         const searchData = await searchControllers.getSearchedInfo(req);

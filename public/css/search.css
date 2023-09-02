@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+#cover-con {
+    display: none;
+}
+
 #left-con {
     width: 30%;
     height: 80%;    

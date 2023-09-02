@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 module.exports.searchService = (selectedGame, searchedId) => {
+    console.log("service");
     // return {"game" : selectedGame, "id" : searchedId};
     switch (selectedGame) {
         case "메이플스토리":
@@ -43,42 +44,47 @@ async function getLeagueOfLegendsInfo(searchedId) {
     let matchDetailInfo = [];
     let matchRecentInfo = [];
     let size = 0;
-    for(let i = 0; i < summonerMatchesInfo.length; i ++) {
-        if(size == 20) break;
-        const summonerMatchesDetailInfoURL = regionAsia + `/lol/match/v5/matches/${summonerMatchesInfo[i]}?api_key=${key}`;
-        const detailInfo = await getMatchDetailInfo(summonerMatchesDetailInfoURL, searchedId);
-
-        //matchDetailData
-        matchDetailInfo.push(detailInfo);
-        size++;
-        
-        //recentMatchData
-        //duplicated check
-        if (detailInfo) {
-            const detailInfoChampionName = detailInfo.championName;    
-            const existingChampionIndex = matchRecentInfo.findIndex(info => info.championName === detailInfoChampionName);
     
-            if (existingChampionIndex !== -1) {
-                matchRecentInfo[existingChampionIndex].data.total++;
-                matchRecentInfo[existingChampionIndex].data.win += detailInfo.win ? 1 : 0;
-                matchRecentInfo[existingChampionIndex].data.kills += detailInfo.kills;
-                matchRecentInfo[existingChampionIndex].data.deaths += detailInfo.deaths;
-                matchRecentInfo[existingChampionIndex].data.assists += detailInfo.assists;
-            } else {
-                matchRecentInfo.push({
-                    championName: detailInfoChampionName,
-                    data: {
-                        total: 1,
-                        win: detailInfo.win ? 1 : 0,
-                        kills: detailInfo.kills,
-                        deaths: detailInfo.deaths,
-                        assists: detailInfo.assists,
-                        imgURL: detailInfo.imgURL
-                    }
-                });
+    if(summonerMatchesInfo) {
+        for(let i = 0; i < summonerMatchesInfo.length; i ++) {
+            if(size == 20) break;
+            const summonerMatchesDetailInfoURL = regionAsia + `/lol/match/v5/matches/${summonerMatchesInfo[i]}?api_key=${key}`;
+            const detailInfo = await getMatchDetailInfo(summonerMatchesDetailInfoURL, searchedId);
+    
+            //matchDetailData
+            matchDetailInfo.push(detailInfo);
+            size++;
+            
+            //recentMatchData
+            //duplicated check
+            if (detailInfo) {
+                const detailInfoChampionName = detailInfo.championName;    
+                const existingChampionIndex = matchRecentInfo.findIndex(info => info.championName === detailInfoChampionName);
+        
+                if (existingChampionIndex !== -1) {
+                    matchRecentInfo[existingChampionIndex].data.total++;
+                    matchRecentInfo[existingChampionIndex].data.win += detailInfo.win ? 1 : 0;
+                    matchRecentInfo[existingChampionIndex].data.kills += detailInfo.kills;
+                    matchRecentInfo[existingChampionIndex].data.deaths += detailInfo.deaths;
+                    matchRecentInfo[existingChampionIndex].data.assists += detailInfo.assists;
+                } else {
+                    matchRecentInfo.push({
+                        championName: detailInfoChampionName,
+                        data: {
+                            total: 1,
+                            win: detailInfo.win ? 1 : 0,
+                            kills: detailInfo.kills,
+                            deaths: detailInfo.deaths,
+                            assists: detailInfo.assists,
+                            imgURL: detailInfo.imgURL
+                        }
+                    });
+                }
             }
         }
     }
+    
+    console.log("finished");
     matchRecentInfo.sort((a, b) => b.data.total - a.data.total);
     return { summonerInfo, summonerLeagueInfo, matchRecentInfo, matchDetailInfo };
 }
