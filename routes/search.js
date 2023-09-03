@@ -16,7 +16,11 @@ router.post('/search', async (req, res) => {
     try {        
         //return summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo
         const searchData = await searchControllers.getSearchedInfo(req);
-        res.json({ searchData });
+        if (!searchData) {
+            //summonerInfo가 없는 경우, 잘못된 검색임
+            res.render('notfound');
+        }
+        else res.json({ searchData });
     } catch (error) {
         console.error(error);
         res.status(500).send("search routes error");

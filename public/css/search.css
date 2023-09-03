@@ -6,7 +6,11 @@
 }
 
 #cover-con {
-    display: none;
+    display: none !important;
+}
+
+#cover-con.show {
+    display: block;
 }
 
 #left-con {

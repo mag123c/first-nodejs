@@ -24,7 +24,7 @@ function search() {
         return;
     }
     
-    else {        
+    else {
         $('#game').val(selectedGame);
 
         document.searchForm.submit();

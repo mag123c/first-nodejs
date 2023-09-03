@@ -30,6 +30,9 @@ async function getLeagueOfLegendsInfo(searchedId) {
     //summonerInfo
     const summonerInfoURL = region + `/lol/summoner/v4/summoners/by-name/${encodedSummonerName}?api_key=${key}`;
     const summonerInfo = await getSummonerInfo(summonerInfoURL);
+
+    if(!summonerInfo) return summonerInfo;
+
     const { id, accountId, puuid } = summonerInfo;    
 
     //summonerLeagueInfo
@@ -44,7 +47,7 @@ async function getLeagueOfLegendsInfo(searchedId) {
     let matchDetailInfo = [];
     let matchRecentInfo = [];
     let size = 0;
-    
+
     if(summonerMatchesInfo) {
         for(let i = 0; i < summonerMatchesInfo.length; i ++) {
             if(size == 20) break;

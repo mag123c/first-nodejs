@@ -16,7 +16,6 @@ body {
 }
 
 #main-con {
-    position: absolute;
-    top: 50%;
+    margin-top: 5%;
     text-align: center;
 }

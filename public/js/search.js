@@ -12,12 +12,12 @@ window.onload = function() {
 
 function _hidePage() {    
     loader.css("display", "block");
-    maincon.attr("style", "display: none !important");
+    // maincon.attr("style", "display: none !important");
 };
 
 function _showPage() {
     loader.css("display", "none");
-    maincon.css("display", "block");
+    maincon.addClass("show");
 };
 
 function renderData() {
@@ -31,8 +31,16 @@ function renderData() {
         type: 'POST',
         data: {"game" : game, "id" : id},
         success: function(res) {
-            dataParsing(res);
-            _showPage();
+            if(!res.searchData) {
+                document.open();
+                document.write(res);
+                document.close();
+            }
+            
+            else {
+                dataParsing(res);
+                _showPage();
+            }
         },
         error: function(error){
             console.error(error, "ajax post error");
@@ -41,12 +49,12 @@ function renderData() {
 }
 
 //summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo
-function dataParsing(res) {    
+function dataParsing(res) {
     var { summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo } = res.searchData;
     console.log(summonerInfo, summonerLeagueInfo, matchDetailInfo, matchRecentInfo);
     //summonerInfo
     if(!summonerInfo) {
-
+        
         return;
     }
 
@@ -70,7 +78,8 @@ function dataParsing(res) {
     }
     
     if(!summonerLeagueInfo) {
-        
+        summonerLeagueImg.attr('src', `../img/unranked.png`);
+        summonerLeagueTierAndRank.text("랭크 게임 정보가 존재하지 않습니다.");
     }
 
     //matchDetailInfo
