@@ -10,7 +10,7 @@
 }
 
 #cover-con.show {
-    display: block;
+    display: block !important;
 }
 
 #left-con {
@@ -53,10 +53,18 @@
     border: solid black 1px;
 }
 
-.winfalse-con, .kdatext-con, .cs-con, .playtime-con, .h-con{
+.winfalse-con, .kdatext-con, .cs-con, .playtime-con, .summoner-namecon, .h-con{
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.summoner-imgcon {
+    width: 30%;
+}
+
+.summoner-namecon {
+    width: 65%;
 }
 
 h3, p, span {

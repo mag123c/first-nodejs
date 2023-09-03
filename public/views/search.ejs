@@ -17,82 +17,85 @@
   <div class="loader">
   </div>
 
-  <div class="container-fluid d-flex justify-content-center" id="cover-con">
-    <div class="container-fluid d-flex flex-column m-5" id="left-con">
-      <!-- 소환사 정보 -->
-      <div class="d-flex m-3" id="summoner-con">
-        <div class="m-1">
-          <img alt="summoner-icon" class="summoner-img">
-        </div>
-        <div class="m-3 d-flex h-con">          
-          <h3 class="summoner-name"></h3>          
-        </div>
-      </div>
+  <div class="container-fluid" id="cover-con">
+    <div class="leftright-con d-flex justify-content-between">
+      <div class="container-fluid d-flex flex-column m-5" id="left-con">
 
-      <!-- 소환사 티어 정보 -->
-      <div class="d-flex flex-column m-3" id="league-con">
-        <div class="m-1 d-flex h-con">
-          <h3>솔로 랭크</h3>
-        </div>
-        <div class="m-1 d-flex">
-          <div class="m-1">
-            <img alt="tier-icon" class="summonerLeagueInfo-img">
+        <!-- 소환사 정보 -->
+        <div class="d-flex m-3" id="summoner-con">
+          <div class="m-1 summoner-imgcon">
+            <img alt="summoner-icon" class="summoner-img">
           </div>
-          <div class="m-1">
-            <p class="summonerLeagueInfo-tierRank"></p>
-            <p class="summonerLeagueInfo-points"></p>
-            <p class="summonerLeagueInfo-winlose"></p>            
+          <div class="m-3 d-flex summoner-namecon">          
+            <h3 class="summoner-name"></h3>          
           </div>
-      </div>
-    </div>
+        </div>
 
-    <!-- 최근 20게임 통계 -->
-    <div class="d-flex flex-column m-3" id="detail-con">
-      <div class="m-2 d-flex h-con">
-        <h3> 최근 20게임 챔피언 통계</h3>
-      </div>
-      <div class="detail-item d-flex m-3">
-        <div class="m-2">
-          <img class="matchRenectInfo-imgURL">
+        <!-- 소환사 티어 정보 -->
+        <div class="d-flex flex-column m-3" id="league-con">
+          <div class="m-1 d-flex h-con">
+            <h3>솔로 랭크</h3>
+          </div>
+          <div class="m-1 d-flex">
+            <div class="m-1">
+              <img alt="tier-icon" class="summonerLeagueInfo-img">
+            </div>
+            <div class="m-1 h-con">
+              <p class="summonerLeagueInfo-tierRank"></p>
+              <p class="summonerLeagueInfo-points"></p>
+              <p class="summonerLeagueInfo-winlose"></p>            
+            </div>
+          </div>
         </div>
-        <div class="m-2">
-          <p class="matchRecentInfo-name"></p>
-          <p class="matchRecentInfo-data-total"></p>
-        </div>
-        <div class="m-2 kdatext-con">
-          <p class="matchRecentInfo-data-percent">
-          <p class="kda-text matchRecentInfo-data-kdaCalculate"></p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- right con -->
-  <div class="container-fluid d-flex m-2" id="right-con">
-    <!-- 최근 전적 -->
-    <div class="d-flex flex-column" id="recent-con">
-      <div class="recent-detail-con d-flex m-1">
-        <div class="m-1">
-          <img class="matchDetailInfo-imgURL" alt="detail-champion-icon">
+        <!-- 최근 20게임 통계 -->
+        <div class="d-flex flex-column m-3" id="detail-con">
+          <div class="m-2 d-flex h-con">
+            <h3> 최근 20게임 챔피언 통계</h3>
+          </div>
+          <div class="detail-item d-flex m-3">
+            <div class="m-2">
+              <img class="matchRenectInfo-imgURL">
+            </div>
+            <div class="m-2">
+              <p class="matchRecentInfo-name"></p>
+              <p class="matchRecentInfo-data-total"></p>
+            </div>
+            <div class="m-2 kdatext-con">
+              <p class="matchRecentInfo-data-percent">
+              <p class="kda-text matchRecentInfo-data-kdaCalculate"></p>
+            </div>
+          </div>
         </div>
-        <div class="m-1 winfalse-con">
-          <h3 class="winfalse-text matchDetailInfo-win"></h3>
-        </div>
-        <div class="m-1 kdatext-con">
-          <p class="kda-text matchDetailInfo-kdaDecimal"></p>
-          <p class="kda-text2 matchDetailInfo-killdeathassists"></p>
-        </div>
-        <div class="m-1 cs-con">
-          <p class="minionspercent-text matchDetailInfo-minPerMinions"></p>
-          <p class="totalminions-text matchDetailInfo-totalMinions"></p>
-        </div>
-        <div class="m-1 playtime-con">
-          <p class="playtime-text matchDetailInfo-playTime"></p>
-          <p class="playtime-text matchDetailInfo-playDate"></p>
+      </div>
+
+      <!-- right con -->
+      <div class="container-fluid d-flex m-5" id="right-con">
+        <!-- 최근 전적 -->
+        <div class="d-flex flex-column" id="recent-con">
+          <div class="recent-detail-con d-flex m-1">
+            <div class="m-1">
+              <img class="matchDetailInfo-imgURL">
+            </div>
+            <div class="m-1 winfalse-con">
+              <h3 class="winfalse-text matchDetailInfo-win"></h3>
+            </div>
+            <div class="m-1 kdatext-con">
+              <p class="kda-text matchDetailInfo-kdaDecimal"></p>
+              <p class="kda-text2 matchDetailInfo-killdeathassists"></p>
+            </div>
+            <div class="m-1 cs-con">
+              <p class="minionspercent-text matchDetailInfo-minPerMinions"></p>
+              <p class="totalminions-text matchDetailInfo-totalMinions"></p>
+            </div>
+            <div class="m-1 playtime-con">
+              <p class="playtime-text matchDetailInfo-playTime"></p>
+              <p class="playtime-text matchDetailInfo-playDate"></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- script -->

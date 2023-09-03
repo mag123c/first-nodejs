@@ -73,7 +73,7 @@ function dataParsing(res) {
     if(summonerLeagueInfo) {
         summonerLeagueImg.attr('src', `../img/${summonerLeagueInfo.tier}.png`);
         summonerLeagueTierAndRank.text(`${summonerLeagueInfo.tier} ${summonerLeagueInfo.rank}`);
-        summonerLeaguePoints.text(`${summonerLeagueInfo.leaguePoints}`);
+        summonerLeaguePoints.text(`${summonerLeagueInfo.leaguePoints}` + "LP");
         summonerLeagueWinAndLose.text(`${summonerLeagueInfo.wins}승 ${summonerLeagueInfo.losses}패`);
     }
     
@@ -82,7 +82,58 @@ function dataParsing(res) {
         summonerLeagueTierAndRank.text("랭크 게임 정보가 존재하지 않습니다.");
     }
 
-    //matchDetailInfo
-
     //matchRecentInfo
+    var coverCon = document.createElement('div');
+    coverCon.setAttribute('class', 'detail-item d-flex m-3');
+    
+    if(!matchRecentInfo) {
+        var pText = document.createElement('p');
+        pText.textContent = "최근 게임 정보가 없습니다."
+        coverCon.appendChild(pText);
+        $('#detail-con').append(coverCon);
+    }
+    else {
+        for(let i = 0; i < matchRecentInfo.length; i ++) {
+            var coverCon2 = document.createElement('div');
+            coverCon2.setAttribute('class', 'detail-item d-flex m-3');
+            var imgCon = document.createElement('div');
+            imgCon.setAttribute('class', 'm-2');
+            var nameCon = document.createElement('div');
+            nameCon.setAttribute('class', 'm-2');
+            var kdaCon = document.createElement('div');
+            kdaCon.setAttribute('class', 'm-2');
+            var image = document.createElement('img');
+            image.setAttribute('class', 'matchRecentInfo-imgURL');
+            var pName = document.createElement('p');
+            pName.setAttribute('class', 'matchRecentInfo-name');
+            var pTotal = document.createElement('p');
+            pTotal.setAttribute('class', 'matchRecentInfo-data-total');
+            var pPercent = document.createElement('p');
+            pPercent.setAttribute('class', 'matchRecentInfo-percent');
+            var pKda = document.createElement('p');
+            pKda.setAttribute('class', 'matchRecentInfo-kdaCalculate');
+
+            
+            image.setAttribute('src', matchRecentInfo[i].data.imgURL);
+            pName.textContent = matchRecentInfo[i].championName;
+            pTotal.textContent = matchRecentInfo[i].data.total + "게임";
+            pPercent.textContent = Math.round(matchRecentInfo[i].data.win / matchRecentInfo[i].data.total * 100) + "%";
+            if(matchRecentInfo[i].data.deaths == 0) pKda.textContent = "KDA " + (matchRecentInfo[i].data.kills + matchRecentInfo[i].data.assists).toFixed(2);
+            else pKda.textContent = "KDA " + ((matchRecentInfo[i].data.kills + matchRecentInfo[i].data.assists) / matchRecentInfo[i].data.deaths).toFixed(2);
+
+            imgCon.appendChild(image);
+            nameCon.appendChild(pName);
+            nameCon.appendChild(pTotal);
+            kdaCon.appendChild(pPercent);
+            kdaCon.appendChild(pKda);
+            
+            coverCon2.appendChild(imgCon);
+            coverCon2.appendChild(nameCon);
+            coverCon2.appendChild(kdaCon);
+            
+            document.getElementById('detail-con').appendChild(coverCon2);
+        }
+    }
+
+    //matchDetailInfo
 }

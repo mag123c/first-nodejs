@@ -23,6 +23,12 @@ function search() {
         else alert("잘못된 ID 형식입니다.");
         return;
     }
+
+    //개발 중
+    else if(selectedGame == "메이플스토리" || selectedGame == "전략적 팀 전투") {
+        alert("미구현된 게임입니다.");
+        return;
+    }
     
     else {
         $('#game').val(selectedGame);
